@@ -193,7 +193,7 @@ def main():
     embeddings = OllamaEmbeddings(model='nomic-embed-text:latest')
 
     #Write project dir for parse here:
-    DIRECTORY = "../../LTE"
+    DIRECTORY = ""
 
     parser = ProjectParser(DIRECTORY, embeddings, ['-x', 'c++', '-std=c++17', '-DNO_SYSTEM_HEADERS'])
  
