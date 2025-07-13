@@ -1,6 +1,6 @@
 # CNodeChat
 
-LLM RAG chat for VS code for C/C++ projects.
+LLM RAG chat for VS code for C/C++ projects. It parses your project with libclang, save function calls into database and LLM Agent could enlarge its context with related code.
 
 ## Modules
 
