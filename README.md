@@ -9,7 +9,7 @@ LLM RAG chat for VS code for C/C++ projects.
 
 ## Demo
 
-![](https://github.com/CNodeChat/demo.gif)
+![gif](https://github.com/Prospect138/CNodeChat/demo.gif)
 
 ## Diagram
 ```
