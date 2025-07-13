@@ -7,6 +7,10 @@ LLM RAG chat for VS code for C/C++ projects.
 - exstension - source files for vs code exstension
 - service - python backend, that act as http server and interact with ollama service AND script for build faiss database.
 
+## Demo
+
+![](https://github.com/CNodeChat/demo.gif)
+
 ## Diagram
 ```
 1.                                         ---source_codes--->[ProjectParser]--VectorDB--->[RAG]

@@ -9,11 +9,9 @@ from ollama import ChatResponse, chat, Message, Options
 import uvicorn
 
 
-
 def use_retriever(model_query: str) -> str:
     response_from_retriever = retriever.invoke(model_query)
     result = ''
-
 
     for doc in response_from_retriever:
         result += doc.metadata['file_path'] + doc.metadata['full_code']
@@ -112,17 +110,13 @@ logger = logging.getLogger("AirChat")
 
 def run_chat(user_message: str, history: list):
     run_retriever_agent_tool = {
-    run_retriever_agent_tool = {
         'type': 'function',
         'function': {
-            'name': 'run_retriever_agent',
-            'description': 'Use RAG retriever Agent to get extend context with snippets of code base.',
             'name': 'run_retriever_agent',
             'description': 'Use RAG retriever Agent to get extend context with snippets of code base.',
             'parameters': {
                 'type': 'object',
                 'properties': {
-                    'model_query': {'type': 'string', 'description': 'Query for RAG retriever agent'},
                     'model_query': {'type': 'string', 'description': 'Query for RAG retriever agent'},
                 },
                 'required': ['model_query']
@@ -131,7 +125,6 @@ def run_chat(user_message: str, history: list):
     }
 
     available_functions = {
-        'run_retriever_agent': run_retriever_agent
         'run_retriever_agent': run_retriever_agent
     }
 
@@ -152,20 +145,11 @@ def run_chat(user_message: str, history: list):
     )
 
     if response.message.tool_calls:
-    if response.message.tool_calls:
         for tool in response.message.tool_calls:
-            tool_call_message = f"🧠 Вызываю инструмент: {tool.function.name} с аргументами {tool.function.arguments}"
-            messages.append(Message(role='assistant', content=str(tool_call_message)))
             tool_call_message = f"🧠 Вызываю инструмент: {tool.function.name} с аргументами {tool.function.arguments}"
             messages.append(Message(role='assistant', content=str(tool_call_message)))
             if function_to_call := available_functions.get(tool.function.name):
                 output = function_to_call(**tool.function.arguments)
-                messages.append(Message(role='tool', content=str(output)))
-
-        response: ChatResponse = chat(
-            model_name,
-            messages=messages
-        )
                 messages.append(Message(role='tool', content=str(output)))
 
         response: ChatResponse = chat(
@@ -190,8 +174,6 @@ def chat_endpoint(req: ChatRequest):
 db_path = "/home/prospect/oia5g2/air_chat/service/code_vector_db"
 embeddings = OllamaEmbeddings(model='nomic-embed-text:latest')
 vectorstore = FAISS.load_local(db_path, embeddings, allow_dangerous_deserialization=True)
-retriever = vectorstore.as_retriever(search_kwargs={'k': 10, 'similarity_score_threshold': 0.8})
-model_name = 'devstral:24b'
 retriever = vectorstore.as_retriever(search_kwargs={'k': 10, 'similarity_score_threshold': 0.8})
 model_name = 'devstral:24b'
 
