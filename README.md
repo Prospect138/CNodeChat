@@ -8,8 +8,7 @@ LLM RAG chat for VS code for C/C++ projects.
 - service - python backend, that act as http server and interact with ollama service AND script for build faiss database.
 
 ## Demo
-
-![gif](https://github.com/Prospect138/CNodeChat/demo.gif)
+![gif](https://github.com/Prospect138/CNodeChat/blob/main/demo.gif)
 
 ## Diagram
 ```
