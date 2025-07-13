@@ -33,6 +33,7 @@ ollama serve
 ## TODO
 - ~~Refactoring~~
 - ~~clang AST based context enlargement~~
+- add database build tools in frontend
 - more refactoring
 - fix frontend
 - containerization for service
