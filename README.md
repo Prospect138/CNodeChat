@@ -11,10 +11,10 @@ LLM RAG chat for VS code for C/C++ projects.
 ```
 1.                                         ---source_codes--->[ProjectParser]--VectorDB--->[RAG]
 
-2. [VS Code extension] -user_query-> [Uvicorn server] -user_query-> [Ollama] -user_query-> [RAG]
-                                                                          (optional tool call)
+2. [VS Code extension] -user_query-> [Uvicorn server] -user_query-> [Ollama] -llm_query--------> [RAG Agent] --query_to_db--> [RAG]
+                                                                            (optional tool call)          (mandatory tool call)
 
-3. [VS Code extension] <-answer------[Uvicorn server] <-answer----- [Ollama] <-answer----- [RAG]
+3. [VS Code extension] <-answer------[Uvicorn server] <-answer----- [Ollama] <-filtered_answer-- [RAG Agent] <-long_answer--- [RAG]
 ```
 
 ## How build:

@@ -149,8 +149,8 @@ class ProjectParser():
                     print(f"Error reading {path}: {e}")
     
 
-    def process_project(self, dir: str):
-        self.parse_project(dir)
+    def process_project(self):
+        self.parse_project(self.path)
         documents = [
             Document(page_content=
                 f"File path: {chunk['file_path']}\n"
@@ -197,7 +197,7 @@ def main():
 
     parser = ProjectParser(DIRECTORY, embeddings, ['-x', 'c++', '-std=c++17', '-DNO_SYSTEM_HEADERS'])
  
-    parser.process_project(DIRECTORY)
+    parser.process_project()
 
 
 if __name__ == "__main__":
